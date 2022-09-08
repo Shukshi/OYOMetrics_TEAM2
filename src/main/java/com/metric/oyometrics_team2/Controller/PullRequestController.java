@@ -19,7 +19,7 @@ public class PullRequestController {
     private PullRequestService pullRequestService;
 
     @RequestMapping(value = "/average-time-spent", method = RequestMethod.GET)
-    public AtomicInteger getAverageTimeSpent(
+    public Long getAverageTimeSpent(
             @RequestParam(value = "repo_owner", required = true) String repoOwner,
             @RequestParam(value = "repo_name", required = true) String repoName
     ) {
