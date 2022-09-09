@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class OyoMetricsTeam2Application {
 
     public static void main(String[] args) {
+
         SpringApplication.run(OyoMetricsTeam2Application.class, args);
     }
 

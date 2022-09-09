@@ -1,13 +1,14 @@
 package com.metric.oyometrics_team2.DTO;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-
 
 @Builder
 @lombok.Data
@@ -15,11 +16,9 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserTemplate {
-    public String userName;
-    public Integer total_commits;
-    public Integer total_additions;
-    public Integer total_deletions;
-    public Long commit_frequency;
-    public List<WeekData> lastSevenWeeksData;
+public class WeeklyCommits {
+
+    @JsonProperty("all")
+    private List<Integer> weeklyCommits;
+
 }
