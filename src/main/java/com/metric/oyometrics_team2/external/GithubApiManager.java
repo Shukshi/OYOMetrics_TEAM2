@@ -2,6 +2,8 @@ package com.metric.oyometrics_team2.external;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.metric.oyometrics_team2.DTO.PullRequest;
+import com.metric.oyometrics_team2.DTO.UserLevel;
+import com.metric.oyometrics_team2.DTO.WeekData;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
@@ -20,7 +22,20 @@ public class GithubApiManager extends RestApiManager{
     private static final String REPO_PULL = "/repos";
 
     public
+    List<UserLevel> getUserData(String repoOwner, String repoName){
+        String url = new StringBuilder(REPO_PULL)
+                .append("/")
+                .append(repoOwner)
+                .append("/")
+                .append(repoName)
+                .append("/stats/contributors")
+                .toString();
 
+        String query = "";
+        return super.get(githubUrl, url, query, getRequestHeaders(), new TypeReference<List<UserLevel>>(){}.getType());
+
+    }
+    public
     List<PullRequest> getPullRequestData(String repoOwner, String repoName) {
         String url = new StringBuilder(REPO_PULL)
                 .append("/")
@@ -38,7 +53,7 @@ public class GithubApiManager extends RestApiManager{
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.add(HttpHeaders.CONTENT_TYPE, "application/json");
 
-        requestHeaders.add("Authorization", "Bearer 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");
+        requestHeaders.add("Authorization", "");
         return requestHeaders;
     }
 

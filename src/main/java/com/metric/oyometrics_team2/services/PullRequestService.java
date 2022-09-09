@@ -17,8 +17,9 @@ public class PullRequestService {
     private GithubApiManager githubApiManager;
     public Long getAverageTimeSpent(String repoOwner, String repoName){
 
-        List <PullRequest> pullRequests = githubApiManager.getPullRequestData(repoOwner, repoName);
+        List<PullRequest> pullRequests = githubApiManager.getPullRequestData(repoOwner, repoName);
         AtomicReference<Long> totalTime = new AtomicReference<>(Long.valueOf(0));
+
 
         pullRequests.forEach(pulls -> {
             Duration diff = Duration.between(pulls.getCreatedAt(), pulls.getClosedAt());
