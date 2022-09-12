@@ -21,7 +21,7 @@ public class PullRequestController {
 
     @Autowired
     private PullRequestResponse pullRequestResponse;
-    @RequestMapping(value = "/average-time-spent", method = RequestMethod.GET)
+    @RequestMapping(value = "/stats", method = RequestMethod.GET)
     public PullRequestResponse getAverageTimeSpent(
             @RequestParam(value = "repo_owner", required = true) String repoOwner,
             @RequestParam(value = "repo_name", required = true) String repoName

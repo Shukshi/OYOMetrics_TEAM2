@@ -10,6 +10,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -52,10 +53,13 @@ public class PullRequestService {
 
         Double totalValidDays = (double)totalMergeDays.toDays();
         Double PrMergeFrequency = mergedAtNotNULL.get()/totalValidDays;
+
+        HashMap<String, String> sample = new HashMap<String, String>();
+
         PullRequestResponse finalAns = new PullRequestResponse();
 
         finalAns.setAverageTimeSpent(averageTimeSpent);
-        finalAns.setPRMergeFrequency(PrMergeFrequency);
+        finalAns.setPrMergeFrequency(PrMergeFrequency);
 
         return finalAns;
     }

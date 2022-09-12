@@ -13,5 +13,5 @@ import org.springframework.stereotype.Component;
 @Component
 public class PullRequestResponse {
     private Long averageTimeSpent;
-    private Double PRMergeFrequency;
+    private Double prMergeFrequency;
 }
