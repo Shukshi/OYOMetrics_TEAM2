@@ -26,5 +26,8 @@ public class PullRequest {
 
     @JsonProperty("html_url")
     private String htmlUrl;
+
+    @JsonProperty("merged_at")
+    private LocalDateTime mergedAt;
 }
 
