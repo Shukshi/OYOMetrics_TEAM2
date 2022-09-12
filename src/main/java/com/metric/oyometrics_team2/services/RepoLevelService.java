@@ -22,7 +22,7 @@ public class RepoLevelService {
         WeeklyCommits weeklyCommits = githubApiManager.getWeeklyCommits(repoOwner,repoName);
         System.out.println(weeklyCommits);
         List<WeekData> allData = new ArrayList<WeekData>();
-
+        System.out.println();
         for(int i=addDelData.size()-10;i<addDelData.size();i++){
             WeekData weekData =new WeekData();
             weekData.setW(addDelData.get(i).get(0));
