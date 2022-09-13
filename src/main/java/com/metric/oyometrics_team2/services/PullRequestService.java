@@ -23,7 +23,7 @@ public class PullRequestService {
     @Autowired
     private PullRequestResponse pullRequestResponse;
 
-    public PullRequestResponse getAverageTimeSpent(String repoOwner, String repoName){
+    public PullRequestResponse getPullRequestData(String repoOwner, String repoName){
         List <PullRequest> pullRequests = githubApiManager.getPullRequestData(repoOwner, repoName);
         AtomicReference<Long> totalTime = new AtomicReference<>(Long.valueOf(0));
 

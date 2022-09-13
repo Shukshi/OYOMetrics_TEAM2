@@ -26,7 +26,7 @@ public class PullRequestController {
             @RequestParam(value = "repo_owner", required = true) String repoOwner,
             @RequestParam(value = "repo_name", required = true) String repoName
     ) {
-        return pullRequestService.getAverageTimeSpent(repoOwner, repoName);
+        return pullRequestService.getPullRequestData(repoOwner, repoName);
     }
 
 }
