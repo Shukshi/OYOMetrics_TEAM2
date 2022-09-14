@@ -12,5 +12,5 @@ import org.springframework.stereotype.Component;
 @ToString
 @Component
 public class FirstCommentResponse {
-    private Long firstCommentMeanTime;
+    private double firstCommentMeanTime;
 }

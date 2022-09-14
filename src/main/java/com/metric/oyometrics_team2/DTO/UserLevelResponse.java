@@ -17,9 +17,9 @@ import java.util.List;
 @NoArgsConstructor
 public class UserLevelResponse {
     public String userName;
-    public Integer total_commits;
-    public Integer total_additionOfLines;
-    public Integer total_deletionsOfLines;
-    public Long commit_frequency;
+    public Integer totalCommits;
+    public Integer totalAdditionOfLines;
+    public Integer totalDeletionsOfLines;
+    public double commitFrequencyOfLastTenWeeks;
     public List<WeekData> lastTenWeeksData;
 }

@@ -28,10 +28,10 @@ public class UserLevelService {
                 ul = totalUserData.get(i);
                 UserLevelResponse user = new UserLevelResponse();
                 user.setUserName(ul.getAuthor().getUserName());
-                user.setTotal_commits(ul.getTotalCommits());
+                user.setTotalCommits(ul.getTotalCommits());
                 List<WeekData> last7weeks = new ArrayList<WeekData>();
 
-                Long commitslast7weeks = new Long(0);
+                double commitslast7weeks = new Long(0);
 
                 for(int j=ul.getWeekData().size()-10;j<ul.getWeekData().size();j++){
                     //System.out.println(ul.getWeekData().get(j));
@@ -45,10 +45,10 @@ public class UserLevelService {
                 total_additions+=ul.getWeekData().get(j).getAdditionOfLines();
             }
 
-            user.setTotal_additionOfLines(total_additions);
-            user.setTotal_deletionsOfLines(total_deletions);
+            user.setTotalAdditionOfLines(total_additions);
+            user.setTotalDeletionsOfLines(total_deletions);
             user.setLastTenWeeksData(last7weeks);
-            user.setCommit_frequency(commitslast7weeks/70);
+            user.setCommitFrequencyOfLastTenWeeks(commitslast7weeks/70);
             userList.add(user);
 
         }

@@ -18,20 +18,20 @@ import java.util.List;
 @NoArgsConstructor
 public class PullRequestDetailsResponse {
     @JsonProperty("comments")
-    private Integer noOfCommentsPerPR;
+    private double noOfCommentsPerPR;
 
     @JsonProperty("review_comments")
-    private Integer noOfReviewCommentsPerPR;
+    private double noOfReviewCommentsPerPR;
 
     @JsonProperty("commits")
-    private Integer noOfCommitsPerPR;
+    private double noOfCommitsPerPR;
 
     @JsonProperty("additions")
-    private Integer additionOfLinesPerPR;
+    private double additionOfLinesPerPR;
 
     @JsonProperty("deletions")
-    private Integer deletionsOfLinesPerPR;
+    private double deletionsOfLinesPerPR;
 
     @JsonProperty("changed_files")
-    private Integer noOfChangedFilesPerPR;
+    private double noOfChangedFilesPerPR;
 }

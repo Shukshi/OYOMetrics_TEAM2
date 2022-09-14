@@ -175,7 +175,7 @@ public class GithubApiManager extends RestApiManager{
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.add(HttpHeaders.CONTENT_TYPE, "application/json");
 
-        requestHeaders.add("Authorization", "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");
+        requestHeaders.add("Authorization", "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");
         return requestHeaders;
 
     }
