@@ -15,11 +15,11 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserTemplate {
+public class UserLevelResponse {
     public String userName;
     public Integer total_commits;
-    public Integer total_additions;
-    public Integer total_deletions;
+    public Integer total_additionOfLines;
+    public Integer total_deletionsOfLines;
     public Long commit_frequency;
-    public List<WeekData> lastSevenWeeksData;
+    public List<WeekData> lastTenWeeksData;
 }

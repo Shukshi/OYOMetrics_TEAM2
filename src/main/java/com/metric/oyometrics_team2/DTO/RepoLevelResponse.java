@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public class RepoLevelTemplate {
+public class RepoLevelResponse {
     @JsonProperty()
     public List<WeekData> lastOneYearAddDelData;
 

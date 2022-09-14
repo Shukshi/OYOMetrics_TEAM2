@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +33,9 @@ public class GithubApiManager extends RestApiManager{
         String query = "";
         System.out.println(url);
         return super.get(githubUrl, url, query, getRequestHeaders(), new TypeReference<List<UserLevel>>(){}.getType());
-
     }
+
+
 
     public
     WeeklyCommits getWeeklyCommits(String repoOwner, String repoName){
@@ -47,7 +49,6 @@ public class GithubApiManager extends RestApiManager{
 
         String query = "";
         return super.get(githubUrl, url, query, getRequestHeaders(), new TypeReference<WeeklyCommits>(){}.getType());
-
     }
 
     public
@@ -75,16 +76,106 @@ public class GithubApiManager extends RestApiManager{
                 .append("/pulls")
                 .toString();
 
-        String query = "state=closed";
+        String query = "per_page=5&state=closed";
         return super.get(githubUrl, url, query, getRequestHeaders(), new TypeReference<List<PullRequest>>(){}.getType());
     }
+
+    public
+    List<FirstReviewEvent> getFirstReviewEventCreatedAt(String rawUrl, String repoOwner, String repoName) {
+
+            int j=rawUrl.length()-1;
+            String pullNo="";
+            while(j>=0){
+                if(rawUrl.charAt(j)=='/'){
+                    break;
+                }
+                pullNo= rawUrl.charAt(j)+pullNo;
+                j--;
+            }
+
+        String url = new StringBuilder(REPO_PULL)
+                .append("/")
+                .append(repoOwner)
+                .append("/")
+                .append(repoName)
+                .append("/pulls")
+                .append("/")
+                .append(pullNo)
+                .append("/reviews")
+                .toString();
+
+        String query = "";
+        return super.get(githubUrl, url, query, getRequestHeaders(), new TypeReference<List<FirstReviewEvent>>(){}.getType());
+    }
+
+
+    public
+    List<FirstReviewEvent> getFirstCommentEventCreatedAt(String rawUrl, String repoOwner, String repoName) {
+
+
+        int j=rawUrl.length()-1;
+        String pullNo="";
+        while(j>=0){
+            if(rawUrl.charAt(j)=='/'){
+                break;
+            }
+            pullNo= rawUrl.charAt(j)+pullNo;
+            j--;
+        }
+
+        String url = new StringBuilder(REPO_PULL)
+                .append("/")
+                .append(repoOwner)
+                .append("/")
+                .append(repoName)
+                .append("/pulls")
+                .append("/")
+                .append(pullNo)
+                .append("/comments")
+                .toString();
+
+        String query = "";
+        return super.get(githubUrl, url, query, getRequestHeaders(), new TypeReference<List<FirstReviewEvent>>(){}.getType());
+
+    }
+
+
+
+    public
+    PullRequestDetailsResponse getPullRequestDetails(String rawUrl, String repoOwner, String repoName) {
+
+        int j=rawUrl.length()-1;
+        String pullNo="";
+        while(j>=0){
+            if(rawUrl.charAt(j)=='/'){
+                break;
+            }
+            pullNo= rawUrl.charAt(j)+pullNo;
+            j--;
+        }
+
+        String url = new StringBuilder(REPO_PULL)
+                .append("/")
+                .append(repoOwner)
+                .append("/")
+                .append(repoName)
+                .append("/pulls")
+                .append("/")
+                .append(pullNo)
+                .toString();
+
+        String query = "";
+        return super.get(githubUrl, url, query, getRequestHeaders(), new TypeReference<PullRequestDetailsResponse>(){}.getType());
+    }
+
+
 
     public static HttpHeaders getRequestHeaders() {
 
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.add(HttpHeaders.CONTENT_TYPE, "application/json");
 
-        requestHeaders.add("Authorization", "");
+        requestHeaders.add("Authorization", "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");
         return requestHeaders;
 
     }

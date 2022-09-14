@@ -1,16 +1,19 @@
 package com.metric.oyometrics_team2.Controller;
 
+import com.metric.oyometrics_team2.DTO.FirstCommentResponse;
+import com.metric.oyometrics_team2.DTO.FirstEventResponse;
+import com.metric.oyometrics_team2.DTO.PullRequestDetailsResponse;
 import com.metric.oyometrics_team2.DTO.PullRequestResponse;
+import com.metric.oyometrics_team2.services.PullRequestDetailsService;
 import com.metric.oyometrics_team2.services.PullRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/pr", produces = MediaType.APPLICATION_JSON_VALUE)
 
@@ -21,6 +24,11 @@ public class PullRequestController {
 
     @Autowired
     private PullRequestResponse pullRequestResponse;
+
+    @Autowired
+    private PullRequestDetailsService pullRequestDetailsService;
+
+    @CrossOrigin
     @RequestMapping(value = "/average-time-spent", method = RequestMethod.GET)
     public PullRequestResponse getAverageTimeSpent(
             @RequestParam(value = "repo_owner", required = true) String repoOwner,
@@ -28,5 +36,43 @@ public class PullRequestController {
     ) {
         return pullRequestService.getAverageTimeSpent(repoOwner, repoName);
     }
+
+    @CrossOrigin
+    @RequestMapping(value = "/first-review-mean-time", method = RequestMethod.GET)
+    public FirstEventResponse getFirstReviewMeanTime(
+            @RequestParam(value = "repo_owner", required = true) String repoOwner,
+            @RequestParam(value = "repo_name", required = true) String repoName
+    ) throws InterruptedException {
+
+        FirstEventResponse firstEventResponse= pullRequestService.getFirstReviewMeanTime(repoOwner, repoName);
+        //Thread.sleep(10000);
+        return firstEventResponse;
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/first-comment-mean-time", method = RequestMethod.GET)
+    public FirstCommentResponse getFirstCommentMeanTime(
+            @RequestParam(value = "repo_owner", required = true) String repoOwner,
+            @RequestParam(value = "repo_name", required = true) String repoName
+    ) throws InterruptedException {
+
+        FirstCommentResponse firstCommentResponse= pullRequestService.getFirstCommentMeanTime(repoOwner, repoName);
+        //Thread.sleep(10000);
+        return firstCommentResponse;
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/last-100-pull-request-details", method = RequestMethod.GET)
+    public PullRequestDetailsResponse getPullRequestDetails(
+            @RequestParam(value = "repo_owner", required = true) String repoOwner,
+            @RequestParam(value = "repo_name", required = true) String repoName
+    ) throws InterruptedException {
+
+        PullRequestDetailsResponse pullRequestDetails= pullRequestDetailsService.getPullRequestDetails(repoOwner, repoName);
+
+        //Thread.sleep(10000);
+        return pullRequestDetails;
+    }
+
 
 }
