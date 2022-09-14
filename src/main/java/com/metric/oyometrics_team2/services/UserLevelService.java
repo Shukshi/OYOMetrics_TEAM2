@@ -3,6 +3,7 @@ package com.metric.oyometrics_team2.services;
 import com.metric.oyometrics_team2.DTO.UserLevel;
 import com.metric.oyometrics_team2.DTO.UserLevelResponse;
 import com.metric.oyometrics_team2.DTO.WeekData;
+import com.metric.oyometrics_team2.DTO.WeekDataAPIResponse;
 import com.metric.oyometrics_team2.external.GithubApiManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,13 +30,22 @@ public class UserLevelService {
                 UserLevelResponse user = new UserLevelResponse();
                 user.setUserName(ul.getAuthor().getUserName());
                 user.setTotalCommits(ul.getTotalCommits());
-                List<WeekData> last7weeks = new ArrayList<WeekData>();
+                List<WeekDataAPIResponse> last7weeks = new ArrayList<>();
+
 
                 double commitslast7weeks = new Long(0);
 
                 for(int j=ul.getWeekData().size()-10;j<ul.getWeekData().size();j++){
                     //System.out.println(ul.getWeekData().get(j));
-                last7weeks.add(ul.getWeekData().get(j));
+                    WeekData wd= ul.getWeekData().get(j);
+                    WeekDataAPIResponse wdAPIr = new WeekDataAPIResponse();
+
+                    wdAPIr.setCommits(wd.getCommits());
+                    wdAPIr.setDeletionOfLines(wd.getDeletionOfLines());
+                    wdAPIr.setAdditionOfLines(wd.getAdditionOfLines());
+                    wdAPIr.setStartOfWeekUnixTimeStamp(wd.getStartOfWeekUnix());
+
+                    last7weeks.add(wdAPIr);
                 commitslast7weeks+=ul.getWeekData().get(j).getCommits();
             }
             Integer total_additions=0, total_deletions=0;

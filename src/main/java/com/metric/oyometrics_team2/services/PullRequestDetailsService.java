@@ -1,9 +1,6 @@
 package com.metric.oyometrics_team2.services;
 
-import com.metric.oyometrics_team2.DTO.FirstEventResponse;
-import com.metric.oyometrics_team2.DTO.PullRequest;
-import com.metric.oyometrics_team2.DTO.PullRequestDetailsResponse;
-import com.metric.oyometrics_team2.DTO.PullRequestResponse;
+import com.metric.oyometrics_team2.DTO.*;
 import com.metric.oyometrics_team2.external.GithubApiManager;
 import lombok.Getter;
 import lombok.Setter;
@@ -106,11 +103,11 @@ public class PullRequestDetailsService {
     public double totalChangedFiles;
     public double count;
 
-    public PullRequestDetailsResponse getPullRequestDetails(String repoOwner, String repoName ){
+    public PRDetailsAPIResponse getPullRequestDetails(String repoOwner, String repoName ){
 
         List <PullRequest> pullRequests = githubApiManager.getPullRequestData(repoOwner, repoName);
 
-        PullRequestDetailsResponse prDetails = new PullRequestDetailsResponse();
+        PRDetailsAPIResponse prDetails = new PRDetailsAPIResponse();
 
         //Long zero = new Long(0);
         double zero = 0;

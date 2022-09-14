@@ -1,9 +1,6 @@
 package com.metric.oyometrics_team2.Controller;
 
-import com.metric.oyometrics_team2.DTO.FirstCommentResponse;
-import com.metric.oyometrics_team2.DTO.FirstEventResponse;
-import com.metric.oyometrics_team2.DTO.PullRequestDetailsResponse;
-import com.metric.oyometrics_team2.DTO.PullRequestResponse;
+import com.metric.oyometrics_team2.DTO.*;
 import com.metric.oyometrics_team2.services.PullRequestDetailsService;
 import com.metric.oyometrics_team2.services.PullRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,12 +60,12 @@ public class PullRequestController {
 
     @CrossOrigin
     @RequestMapping(value = "/last-100-pull-request-details", method = RequestMethod.GET)
-    public PullRequestDetailsResponse getPullRequestDetails(
+    public PRDetailsAPIResponse getPullRequestDetails(
             @RequestParam(value = "repo_owner", required = true) String repoOwner,
             @RequestParam(value = "repo_name", required = true) String repoName
     ) throws InterruptedException {
 
-        PullRequestDetailsResponse pullRequestDetails= pullRequestDetailsService.getPullRequestDetails(repoOwner, repoName);
+        PRDetailsAPIResponse pullRequestDetails= pullRequestDetailsService.getPullRequestDetails(repoOwner, repoName);
 
         //Thread.sleep(10000);
         return pullRequestDetails;

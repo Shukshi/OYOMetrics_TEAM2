@@ -21,5 +21,6 @@ public class UserLevelResponse {
     public Integer totalAdditionOfLines;
     public Integer totalDeletionsOfLines;
     public double commitFrequencyOfLastTenWeeks;
-    public List<WeekData> lastTenWeeksData;
+    public List<WeekDataAPIResponse> lastTenWeeksData;
+
 }

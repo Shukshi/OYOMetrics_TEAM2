@@ -27,5 +27,4 @@ public class UserLevel {
     @JsonProperty("weeks")
     private List<WeekData> weekData;
 
-
 }

@@ -1,8 +1,12 @@
 package com.metric.oyometrics_team2.DTO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 
-public class PRDetailsAPIresponse {
+@Getter
+@Setter
+public class PRDetailsAPIResponse {
 
     private double noOfCommentsPerPR;
 
