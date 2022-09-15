@@ -19,4 +19,6 @@ public class PRDetailsAPIResponse {
     private double deletionsOfLinesPerPR;
 
     private double noOfChangedFilesPerPR;
+
+    private double noOfPullRequestsFetched;
 }

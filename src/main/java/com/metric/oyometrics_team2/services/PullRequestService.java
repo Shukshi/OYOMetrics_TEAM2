@@ -72,7 +72,7 @@ public class PullRequestService {
             LocalDateTime dummy = a;
             return dummy;
         }
-        LocalDateTime created_at = listOfCreatedAt.get(0).getCreatedAt() ;
+        LocalDateTime created_at = listOfCreatedAt.get(0).getSubmittedAt() ;
         System.out.println(created_at);
         if(created_at!=a){
             setFRMT_total_time(getFRMT_total_time()+Duration.between(PR_createdAt,created_at).getSeconds());
@@ -85,7 +85,7 @@ public class PullRequestService {
     public LocalDateTime getPullReviewFirstComment(String url, String repoOwner, String repoName,LocalDateTime PR_createdAt){
 
         System.out.println(url);
-        List<FirstReviewEvent> listOfCreatedAt = githubApiManager.getFirstCommentEventCreatedAt(url,repoOwner,repoName);
+        List<FirstCommentEvent> listOfCreatedAt = githubApiManager.getFirstCommentEventCreatedAt(url,repoOwner,repoName);
 
         if(listOfCreatedAt.size()==0){
             LocalDateTime dummy = a;
@@ -102,10 +102,7 @@ public class PullRequestService {
     }
 
 
-
-
-
-    public FirstEventResponse getFirstReviewMeanTime( String repoOwner, String repoName ){
+    public FirstEventResponse getFirstReviewMeanTime( String repoOwner, String repoName ) throws InterruptedException {
 
         List <PullRequest> pullRequests = githubApiManager.getPullRequestData(repoOwner, repoName);
 
@@ -129,7 +126,7 @@ public class PullRequestService {
             });
 
         }
-
+        Thread.sleep(20000);
         System.out.println(getFRMT_total_time());
         System.out.println(getFRMT_count());
 
@@ -139,7 +136,7 @@ public class PullRequestService {
         return firstEventResponse;
     }
 
-    public FirstCommentResponse getFirstCommentMeanTime(String repoOwner, String repoName ){
+    public FirstCommentResponse getFirstCommentMeanTime(String repoOwner, String repoName ) throws InterruptedException {
 
         List <PullRequest> pullRequests = githubApiManager.getPullRequestData(repoOwner, repoName);
 
@@ -153,7 +150,7 @@ public class PullRequestService {
             CompletableFuture.supplyAsync(() -> {
                 try {
                     LocalDateTime createdAt = getPullReviewFirstComment(url,repoOwner,repoName,PR_createdAt);
-                    Thread.sleep(2000);
+
                     return createdAt;
                 } catch (Exception e) {
                     throw new RuntimeException(e);
@@ -161,7 +158,7 @@ public class PullRequestService {
             });
 
         }
-
+        Thread.sleep(20000);
         System.out.println(getFCMT_total_time());
         System.out.println(getFCMT_count());
 

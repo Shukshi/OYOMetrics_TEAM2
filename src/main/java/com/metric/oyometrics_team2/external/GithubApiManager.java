@@ -76,7 +76,7 @@ public class GithubApiManager extends RestApiManager{
                 .append("/pulls")
                 .toString();
 
-        String query = "per_page=5&state=closed";
+        String query = "per_page=30&state=closed";
         return super.get(githubUrl, url, query, getRequestHeaders(), new TypeReference<List<PullRequest>>(){}.getType());
     }
 
@@ -110,7 +110,7 @@ public class GithubApiManager extends RestApiManager{
 
 
     public
-    List<FirstReviewEvent> getFirstCommentEventCreatedAt(String rawUrl, String repoOwner, String repoName) {
+    List<FirstCommentEvent> getFirstCommentEventCreatedAt(String rawUrl, String repoOwner, String repoName) {
 
 
         int j=rawUrl.length()-1;
@@ -135,7 +135,7 @@ public class GithubApiManager extends RestApiManager{
                 .toString();
 
         String query = "";
-        return super.get(githubUrl, url, query, getRequestHeaders(), new TypeReference<List<FirstReviewEvent>>(){}.getType());
+        return super.get(githubUrl, url, query, getRequestHeaders(), new TypeReference<List<FirstCommentEvent>>(){}.getType());
 
     }
 
@@ -175,7 +175,7 @@ public class GithubApiManager extends RestApiManager{
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.add(HttpHeaders.CONTENT_TYPE, "application/json");
 
-        requestHeaders.add("Authorization", "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");
+        requestHeaders.add("Authorization", "");
         return requestHeaders;
 
     }
